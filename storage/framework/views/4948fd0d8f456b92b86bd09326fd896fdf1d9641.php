@@ -8,6 +8,7 @@
 <form id="form">
     <?php echo csrf_field(); ?>
     <?php echo method_field('PATCH'); ?>
+    
     <div class="card border-bottom-0">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Tambah Halaman Baru</h6>

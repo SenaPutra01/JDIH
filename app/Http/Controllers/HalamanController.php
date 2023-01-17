@@ -30,7 +30,7 @@ class HalamanController extends Controller
                     ->editColumn('aksi', function($p){
                         return '
                             <a href="halaman/'.$p->id.'/edit" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-pen"></i></a>
-                            <a href="halaman/destroy, '.$p->id.'" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-trash"></i></a>';
+                            <a href="'.route('halaman.destroy', $p->id).'" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-trash"></i></a>';
                     })
                     // ->editColumn('tgl_booking', function($p){
                     //     if($p->tgl_booking == "")
@@ -114,7 +114,15 @@ class HalamanController extends Controller
         $data = Portal_Pages::findOrFail($id);
         $data->delete();
 
+        if($data) {
+            //return response()->json(['message' => "Berhasil Menghapus data"])    
+            return redirect()->route('frontend.halaman.index')->with(['success' => 'Berhasil Menghapus data']);
+        }else{
+            // return response()->json(['message' => "Gagal Menghapus data!"])
+            return redirect()->route('frontend.halaman.index')->with(['error' => 'Gagal Menghapus data']);
+        }
+
         // return response()->json(['message' => "Berhasil Menghapus data"]);
-        return redirect()->route('frontend.halaman.index');
+        //return redirect()->route('frontend.halaman.index');
     }
 }
